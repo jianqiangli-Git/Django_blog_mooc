@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit_page</title>
+</head>
+<body>
+<form action="{% url 'blog:action_page' %}" method="post">
+    {% csrf_token %}
+    {% if article %}
+        <input type="hidden" name="modefy" value="{{article.id}}">
+        <label>
+            文章题目<input type="text" name="article_title" value="{{article.title}}">
+        </label></br>
+        <label>
+            文章内容<input type="text" name="article_content" value="{{article.content}}">
+        </label></br>
+    {% else %}
+        <input type="hidden" name="modefy" value="0">
+        <label>
+            文章题目<input type="text" name="article_title">
+        </label></br>
+        <label>
+            文章内容<input type="text" name="article_content">
+        </label></br>
+    {% endif %}
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
